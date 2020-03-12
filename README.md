@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 This project is a static project, where some content or parameters for Create, Read, Update, Delete are hardcodes. Maybe in the future this project will be upgraded again, so that it can become a dynamic and configurable project
 
-This Project is Using plugins:
+This Project is uses plugins:
 ```
         dependencies:
             flutter_bloc: ^3.2.0 
