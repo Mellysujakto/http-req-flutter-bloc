@@ -15,7 +15,7 @@ void main() {
   String deleteURL = "https://reqres.in/api/users/2";
   
   group("Customer Service Test", () {
-    test("getOne test", () async {
+    test("getOne", () async {
       String id = "1";
       Customer expected = Customer(id: "1", name: "GeorgeBluth");
       when(client.get(getOneURL + id)).thenAnswer(
@@ -23,7 +23,7 @@ void main() {
       Customer actual = await CustomerService.getOne(id);
       expect(actual, equals(expected));
     });
-    test("create test", () async {
+    test("create", () async {
       String name = "jacto";
       String job = " new owner";
       when(client.post(postURL)).thenAnswer(
@@ -31,7 +31,7 @@ void main() {
       Customer actual = await CustomerService.create(name, job);
       expect(actual.name, equals(name));
     });
-    test("update test", () async {
+    test("update", () async {
       String name = "jacto";
       String job = " new owner";
       when(client.put(putURL)).thenAnswer(
@@ -39,7 +39,7 @@ void main() {
       Customer actual = await CustomerService.update(name, job);
       expect(actual.name, equals(name));
     });
-    test("delete test", () async {
+    test("delete", () async {
       String expected = "JanetWeaver";
       when(client.delete(deleteURL)).thenAnswer(
           (_) async => Future.value(http.Response('''expected''', 200)));
