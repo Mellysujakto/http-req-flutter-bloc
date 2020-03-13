@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/bloc/customer_bloc.dart';
+import 'package:flutter_bloc_crud/common/route_name_constant.dart';
 import 'package:flutter_bloc_crud/model/customer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomerScreen extends StatelessWidget {
-  static final routeName = "/customer_screen";
+  static final routeName = RouteNameConstant.customerScreen;
   @override
   Widget build(BuildContext context) {
     CustomerBloc customerBloc = BlocProvider.of<CustomerBloc>(context);

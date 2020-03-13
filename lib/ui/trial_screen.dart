@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/bloc/color_bloc.dart';
+import 'package:flutter_bloc_crud/common/route_name_constant.dart';
 import 'package:flutter_bloc_crud/ui/customer_screen.dart';
 
 class TrialScreen extends StatelessWidget {
-  static final routeName = "/trial_screen";
+  static final routeName = RouteNameConstant.trialScreen;
 
   @override
   Widget build(BuildContext context) {
