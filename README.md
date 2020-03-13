@@ -27,7 +27,7 @@ This Project is uses plugins:
             http: ^0.12.0+4 
                 // fetching data as http request
             mockito: ^4.1.1   
-                // unit testing, but it's still useless
+                // mock/clone model for unit testing
             equatable: ^1.1.1 
                 // uncompare the same object or variable
             fluttertoast: ^3.1.3 
