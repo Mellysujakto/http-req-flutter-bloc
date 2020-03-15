@@ -40,4 +40,20 @@ class CustomerService {
     print(userDate.toString());
     return Customer.createObject(userDate);
   }
+
+  static Future<List<Customer>> getAll() async {
+    String apiURL = "https://reqres.in/api/users?page=2";
+
+    var apiResult = await http.get(apiURL);
+    var jsonObject = json.decode(apiResult.body);
+    List<dynamic> customerDataList =
+        (jsonObject as Map<String, dynamic>)['data'];
+
+    List<Customer> customers = [];
+    for (var i = 0; i < customerDataList.length; i++) {
+      customers.add(Customer.createObject(customerDataList[i]));
+    }
+
+    return customers;
+  }
 }
