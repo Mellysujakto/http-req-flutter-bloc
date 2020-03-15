@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/model/customer.dart';
 import 'package:flutter_bloc_crud/resources/costumer_service.dart';
 
-enum CustomerEvent { to_get, to_post, to_put, to_delete }
+part 'customer_event.dart';
 
 class CustomerBloc extends Bloc<CustomerEvent, Customer> {
   static Customer initialStateCustomer = Customer(id: "no id", name: "no name");
@@ -11,13 +11,21 @@ class CustomerBloc extends Bloc<CustomerEvent, Customer> {
 
   @override
   Stream<Customer> mapEventToState(CustomerEvent event) async* {
-    print("pressed");
-    yield (event == CustomerEvent.to_get)
-        ? await CustomerService.getOne("1")
-        : (event == CustomerEvent.to_post)
-            ? await CustomerService.create("Jacto", "Dev")
-            : (event == CustomerEvent.to_put)
-                ? await CustomerService.update("morpheus", "zion resident")
-                : await CustomerService.delete();
+    if (event is Get) {
+      yield await CustomerService.getOne(event.id);
+    } else if (event is Post) {
+      yield await CustomerService.create(event.name, event.job);
+    } else if (event is Put) {
+      yield await CustomerService.update(event.firstName, event.lastName);
+    } else if (event is Delete) {
+      yield await CustomerService.delete();
+    } else {
+      yield Customers(await CustomerService.getAll());
+    }
   }
+}
+
+class Customers extends Customer {
+  List<Customer> customers;
+  Customers(this.customers);
 }
