@@ -16,7 +16,7 @@ class CustomerScreen extends StatelessWidget {
         children: <Widget>[
           FloatingActionButton(
             onPressed: () {
-              customerBloc.add(CustomerEvent.to_get);
+              customerBloc.add(Get("1"));
               Fluttertoast.showToast(
                   msg: "Getted",
                   toastLength: Toast.LENGTH_SHORT,
@@ -31,7 +31,7 @@ class CustomerScreen extends StatelessWidget {
           ),
           FloatingActionButton(
             onPressed: () {
-              customerBloc.add(CustomerEvent.to_post);
+              customerBloc.add(Post(name: "Jacto", job: "Dev"));
               Fluttertoast.showToast(
                   msg: "Created",
                   toastLength: Toast.LENGTH_SHORT,
@@ -46,7 +46,8 @@ class CustomerScreen extends StatelessWidget {
           ),
           FloatingActionButton(
             onPressed: () {
-              customerBloc.add(CustomerEvent.to_put);
+              customerBloc
+                  .add(Put(firstName: "morpheus", lastName: "zion resident"));
               Fluttertoast.showToast(
                   msg: "Updated",
                   toastLength: Toast.LENGTH_SHORT,
@@ -61,7 +62,7 @@ class CustomerScreen extends StatelessWidget {
           ),
           FloatingActionButton(
             onPressed: () {
-              customerBloc.add(CustomerEvent.to_delete);
+              customerBloc.add(Delete());
               Fluttertoast.showToast(
                   msg: "Deleted",
                   toastLength: Toast.LENGTH_SHORT,
@@ -86,23 +87,27 @@ class CustomerScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             BlocBuilder<CustomerBloc, Customer>(
-              builder: (context, customer) => Material(
+              builder: (context, Customer customer) => Material(
                 borderRadius: BorderRadius.circular(10.0),
                 elevation: 15.0,
                 color: Colors.cyan,
                 child: Container(
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    height: MediaQuery.of(context).size.height / 5,
-                    child: Center(
-                      child: Text(
-                          (customer != CustomerBloc.initialStateCustomer)
-                              ? "Id : " +
-                                  customer.id +
-                                  "\n" +
-                                  "Name : " +
-                                  customer.name
-                              : "Press any button"),
-                    )),
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  height: MediaQuery.of(context).size.height / 5,
+                  child: Center(
+                    child: Text(
+                      (customer != CustomerBloc.initialStateCustomer)
+                          ? "Id : " +
+                              customer.id +
+                              "\n" +
+                              "Name : " +
+                              customer.name
+                          : "Press any button",
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    // CircularProgressIndicator();
+                  ),
+                ),
               ),
             ),
           ],
